@@ -4,13 +4,14 @@ import getpass
 
 username=input("Enter the username: ")
 password=getpass.getpass("Enter the password: ")
-
+secret=password
 
 cfglist = [
 	"object network Sonifi-AWS",
 	"fqdn outgoing.hsia.sonifi.cloud",
 	"object-group network Allowed_Public",
 	"network-object object Sonifi-AWS",
+	"write mem",
 ]
 with open('devices.txt') as firewalls:
 	for IP in firewalls:
@@ -19,11 +20,14 @@ with open('devices.txt') as firewalls:
 			'ip': IP,
 			'username': username,
 			'password': password,
+			'secret': secret,
 }
+
 
 		net_connect = ConnectHandler(**firewall)
 		print('Connecting to ' + IP)
 		print('-'*79)
+		net_connect.enable()
 		print(net_connect.find_prompt())
 		hostname = net_connect.send_command('show hostname')
 		print('Backing up ' + hostname)
