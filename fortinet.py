@@ -35,12 +35,12 @@ with open('devices.txt') as firewalls:
 }
 
 		net_connect = ConnectHandler(**firewall)
-		print('Connecting to ' + IP)
+		print('Connecting to ' + IP.strip())
 		print('-'*79)
 		print(net_connect.find_prompt())
 		#hostname = net_connect.send_command('show hostname')
-		print('Backing up ' + IP)
-		filename = '/home/pregan/scripts/backups/' + IP + '.txt'
+		print('Backing up ' + IP.strip())
+		filename = '/home/pregan/scripts/backups/' + IP.strip() + '.txt'
 		showrun = net_connect.send_command('show full-configuration')
 		log_file = open(filename, "a")
 		log_file.write(showrun)

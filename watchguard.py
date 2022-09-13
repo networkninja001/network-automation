@@ -44,7 +44,7 @@ with open('devices.txt') as firewalls:
 }
 
 		net_connect = ConnectHandler(**firewall)
-		print('Connecting to ' + IP, str(sshport))
+		print('Connecting to ' + IP.strip(), str(sshport))
 		print('-'*79)
 		print(net_connect.find_prompt())
 		#hostname = net_connect.send_command('show hostname')
