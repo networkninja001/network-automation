@@ -47,5 +47,6 @@ with open('devices.txt') as firewalls:
 
 		print('Sending commands to ' + IP)
 		configoutput = net_connect.send_config_set(cfglist)
+		print(configoutput)
 		#configoutput += net_connect.save_config()
 		net_connect.disconnect()

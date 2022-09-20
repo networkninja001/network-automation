@@ -57,6 +57,7 @@ with open('devices.txt') as firewalls:
 		print('Sending commands to ' + IP)
 		net_connect.enable()
 		#net_connect.send_config_from_file(config_file='wgconfig.txt')
-		net_connect.send_config_set(cfglist)
+		configoutput = net_connect.send_config_set(cfglist)
+		print(configoutput)
 		#configoutput += net_connect.save_config()
 		net_connect.disconnect()
