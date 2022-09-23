@@ -1,6 +1,10 @@
 #! /usr/bin/python3
 from netmiko import ConnectHandler
-import getpass
+from netmiko.ssh_exception import  NetMikoTimeoutException
+from paramiko.ssh_exception import SSHException 
+from netmiko.ssh_exception import  AuthenticationException
+from getpass import getpass
+from pprint import pprint
 
 username=input("Enter the username: ")
 password=getpass.getpass("Enter the password: ")
