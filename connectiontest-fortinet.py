@@ -25,19 +25,19 @@ with open('devices.txt') as firewalls:
 		SSHException=("SSH Failure.txt", 'a')
 		EOFError=("EOFerrors.txt",'a')
 		UnknownError=("UnknownError.txt",'a')
-    
+
 	try:
 		net_connect = ConnectHandler(**firewall)
 		print('Connecting to ' + IP)
 		print('-'*79)
 		net_connect.enable()
-		print(net_connect.find_prompt())  
+		print(net_connect.find_prompt())
 		output=net_connect.send_command('get system status')
 		print(output)
 	except (AuthenticationException):
 		print ('Authentication Failure: ' + IP)
 		Authfailure.write('\n' + IP)
-		continue 
+		continue
 	except (NetMikoTimeoutException):
 		print ('\n' + 'Timeout to device: ' + IP)
 		Timeouts.write('\n' + IP)
@@ -45,7 +45,7 @@ with open('devices.txt') as firewalls:
 	except (SSHException):
 		print ('SSH might not be enabled: ' + IP)
 		SSHException.write('\n' + IP)
-		continue 
+		continue
 	except (EOFError):
 		print ('\n' + 'End of attempting device: ' + IP)
 		EOFError.write('\n' + IP)
